@@ -20,7 +20,7 @@ $ bundle install --path vendor/bundle
 $ yarn install # まだ環境にyarnが入っていなかったら
 $ rails db:create db:migrate
 $ rails db:seed_fu
-```
+``
 
 ### Windowsユーザ向け
 Vagrantを通してUbuntu上にyarnをインストールするときは、事前に次の対応が必要です。
@@ -93,11 +93,11 @@ git remote addなどで、originという文字列と、URLを紐づける
 This theme is an application to improve Slack dependency of document sharing.  
 (An in-house tool developed to facilitate internal information sharing)
 　
- 
+
 This time, the integration test (Feature Spec) is not implemented.  
 The reason is that because this application is a small and in-house tool, we do not need to take many man-hours to automate behavior confirmation.
 　
- 
+
 However, logic tests (Model Spec) such as user invitation are implemented.
 
 ## Version
