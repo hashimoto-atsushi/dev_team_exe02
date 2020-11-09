@@ -30,8 +30,10 @@ class TeamsController < ApplicationController
   end
 
   def update
-    if @team.update(team_params)
-      redirect_to @team, notice: I18n.t('views.messages.update_team')
+    if @team.owner_id == current_user.id
+      if @team.update(team_params)
+        redirect_to @team, notice: I18n.t('views.messages.update_team')
+      end
     else
       flash.now[:error] = I18n.t('views.messages.failed_to_save_team')
       render :edit
