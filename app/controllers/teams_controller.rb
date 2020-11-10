@@ -1,6 +1,6 @@
 class TeamsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_team, only: %i[show edit update destroy team_ower_change,]
+  before_action :set_team, only: %i[show edit update destroy changeowner]
 
   def index
     @teams = Team.all
@@ -49,10 +49,12 @@ class TeamsController < ApplicationController
     @team = current_user.keep_team_id ? Team.find(current_user.keep_team_id) : current_user.teams.first
   end
 
-  def team_ower_change
-    binding.pry
-    @team.owner = @team
-    redirect_to teams_url, notice: I18n.t('views.messages.delete_team')
+  def changeowner
+    if @team.update(owner_id: params[:assign_user_id])
+      redirect_to team_url, notice: 'リーダー権限を移行しました！'
+    else
+      redirect_to team_url, notice: 'リーダー権限を移行できませんでした！'
+    end
   end
 
   private
