@@ -25,7 +25,6 @@ class AgendasController < ApplicationController
     if @agenda.user.id == current_user.id || @agenda.team.owner_id == current_user.id
         if @agenda.destroy
           @agenda.team.members.each do |member|
-          binding.irb
           AgendaMailer.agenda_mail(member).deliver
           end
           redirect_to dashboard_url, notice: I18n.t('views.messages.delete_agenda')
